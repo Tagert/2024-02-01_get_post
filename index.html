@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Items sharing platform</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <h1>Share with me</h1>
+          <div class="nav-list">
+            <a href="./index.html">Home</a>
+            <a href="./add-me/add-index.html">Add your item</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="search-section">
+      <div class="container">
+        <nav class="search-list">
+          <div class="search-title">
+            <h2>Items filter:</h2>
+            <p><span>4</span> items found</p>
+          </div>
+
+          <div class="sort">
+            <div class="by-brand">
+              <label for="brand">Brand:</label>
+              <select name="brand" id="brand">
+                <option value="Apple">Apple</option>
+                <option value="Asus">Asus</option>
+                <option value="Motorola">Motorola</option>
+                <option value="OnePlus">OnePlus</option>
+                <option value="Samsung">Samsung</option>
+                <option value="Sony">Sony</option>
+              </select>
+            </div>
+
+            <div class="by-order">
+              <select name="sort" id="sortName">
+                <option value="sortName">Sort by name</option>
+                <option value="sortPriceDes">Sort by price descending</option>
+                <option value="sortPriceAs">Sort by price ascending</option>
+              </select>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <main class="main-section">
+      <div class="container">
+        <div class="cards-container"></div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

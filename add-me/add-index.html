@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Items sharing platform</title>
+    <link rel="stylesheet" href="add-style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <h1>Share with me</h1>
+          <div class="nav-list">
+            <a href="/2024-02-01_get_post/index.html">Home</a>
+            <a href="./add-index.html">Add your item</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-section">
+      <div class="container">
+        <div class="add-card">
+          <div class="title">
+            <h2>Add Item Here:</h2>
+          </div>
+
+          <div class="add-container">
+            <div class="add-form">
+              <div class="add add-image">
+                <label for="text">Image</label>
+                <input id="imageInput" type="text" placeholder="Image url" />
+              </div>
+
+              <div class="add add-brand">
+                <label for="text">Brand</label>
+                <select name="text" id="brandInput"></select>
+                <!-- <input id="brandInput" type="text" placeholder="Brand name" /> -->
+              </div>
+
+              <div class="add add-name">
+                <label for="text">Name</label>
+                <input id="nameInput" type="text" placeholder="Model name" />
+              </div>
+
+              <div class="add add-launchDate">
+                <label for="text">Launch date</label>
+                <input
+                  id="launchDateInput"
+                  type="text"
+                  placeholder="xxxx-xx-xx (date-month-day)"
+                />
+              </div>
+
+              <div class="add add-platformOs">
+                <label for="text">Platform Os</label>
+                <input
+                  id="platformOsInput"
+                  type="text"
+                  placeholder="Text here..."
+                />
+              </div>
+
+              <div class="add add-selfieCamera">
+                <label for="text">Selfie Camera</label>
+                <input id="selfieCameraInput" type="text" placeholder="12 MP" />
+              </div>
+
+              <div class="add add-internalRam">
+                <label for="text">Internal RAM</label>
+                <input
+                  id="internalRamInput"
+                  type="text"
+                  placeholder="Number of RAM"
+                />
+              </div>
+
+              <div class="add add-batteryType">
+                <label for="text">Battery Type</label>
+                <input
+                  id="batteryTypeInput"
+                  type="text"
+                  placeholder="Li-Ion 5000 mAh"
+                />
+              </div>
+
+              <div class="add add-priceEur">
+                <label for="number">Price, EUR</label>
+                <input id="priceEurInput" type="number" placeholder="450 €" />
+              </div>
+
+              <div class="add add-priceEur">
+                <label for="text">More Info Url</label>
+                <input
+                  id="techSpecLinkInput"
+                  type="text"
+                  placeholder="https://www.gsmarena.com/apple_iphone_15_pro_max-12548.php"
+                />
+              </div>
+            </div>
+
+            <div class="add-button">
+              <button id="add" class="btn btn-outline-secondary">
+                Add property
+              </button>
+              <button id="go-back" class="btn btn-outline-secondary">
+                <a href="/2024-01-29_CAO_fetch_api/index.html">Go back</a>
+              </button>
+            </div>
+          </div>
+
+          <div id="statusMessages"></div>
+        </div>
+      </div>
+    </main>
+    <script src="add-script.js"></script>
+  </body>
+</html>
