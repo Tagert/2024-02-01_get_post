@@ -55,6 +55,7 @@ header .navbar .nav-list a {
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 3rem;
   padding: 0rem 3rem;
 }
 .main-section .add-card .title h2 {
@@ -108,6 +109,9 @@ header .navbar .nav-list a {
   gap: 2rem;
 }
 .main-section .add-card .add-button button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 2rem;
   width: 9rem;
   border-radius: 0.4rem;

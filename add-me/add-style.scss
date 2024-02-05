@@ -66,6 +66,7 @@ header {
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 3rem;
     padding: 0rem 3rem;
 
     .title {
@@ -124,6 +125,9 @@ header {
       gap: 2rem;
 
       button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 2rem;
         width: 9rem;
         border-radius: 0.4rem;

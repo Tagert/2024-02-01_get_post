@@ -193,12 +193,16 @@ header {
         display: none;
         align-items: center;
         justify-content: center;
-        width: 10rem;
-        border-radius: 0.4rem;
+        width: 8rem;
+        border-radius: 0.2rem;
         border: 0.1rem solid #161a30;
         padding: 0.4rem;
         color: #161a30;
-        background-color: #f0ece5;
+        background: linear-gradient(
+          270deg,
+          rgba(227, 225, 217, 1) 0%,
+          rgba(242, 239, 229, 1) 100%
+        );
 
         &:hover {
           cursor: pointer;

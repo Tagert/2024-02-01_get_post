@@ -15,7 +15,19 @@ const techSpecLinkInput = document.getElementById("techSpecLinkInput");
 
 const statusMessages = document.getElementById("statusMessages");
 
-const brands = ["Apple", "Asus", "Motorola", "OnePlus", "Samsung", "Sony"];
+const brands = [
+  "Apple",
+  "Asus",
+  "Google Pixel",
+  "Huawei",
+  "Motorola",
+  "Nokia",
+  "OnePlus",
+  "Oppo",
+  "Samsung",
+  "Sony",
+  "Xiaomi",
+];
 
 brands.forEach((brand) => {
   const addBrand = document.getElementById("brandInput");
@@ -75,6 +87,7 @@ const addCardObj = () => {
     .then((res) => {
       if (res.ok) {
         displayStatus(res.ok, "Property successfully added.");
+        window.location.assign("../index.html");
       } else {
         throw new Error(res.statusText);
       }
@@ -82,10 +95,6 @@ const addCardObj = () => {
     .catch((error) => {
       displayStatus(false, `Something went wrong. Server returned: ${error}.`);
     });
-
-  setTimeout(() => {
-    window.location.assign("../index.html");
-  }, 2000);
 };
 
 addPropertyButton.addEventListener("click", addCardObj);

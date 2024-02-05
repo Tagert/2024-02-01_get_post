@@ -14,6 +14,9 @@
           <div class="nav-list">
             <a href="./index.html">Home</a>
             <a href="./add-me/add-index.html">Add your item</a>
+            <div class="my-basket">
+              <a href="#">My Basket</a>
+            </div>
           </div>
         </nav>
       </div>
@@ -24,27 +27,37 @@
         <nav class="search-list">
           <div class="search-title">
             <h2>Items filter:</h2>
-            <p><span>4</span> items found</p>
+            <p><span id="foundItems"></span> items found</p>
           </div>
 
           <div class="sort">
             <div class="by-brand">
               <label for="brand">Brand:</label>
               <select name="brand" id="brand">
+                <option value="All">All</option>
                 <option value="Apple">Apple</option>
                 <option value="Asus">Asus</option>
+                <option value="Google Pixel">Google Pixel</option>
+                <option value="Huawei">Huawei</option>
                 <option value="Motorola">Motorola</option>
+                <option value="Nokia">Nokia</option>
                 <option value="OnePlus">OnePlus</option>
+                <option value="Oppo">Oppo</option>
                 <option value="Samsung">Samsung</option>
                 <option value="Sony">Sony</option>
+                <option value="Xiaomi">Xiaomi</option>
               </select>
             </div>
 
             <div class="by-order">
-              <select name="sort" id="sortName">
-                <option value="sortName">Sort by name</option>
-                <option value="sortPriceDes">Sort by price descending</option>
-                <option value="sortPriceAs">Sort by price ascending</option>
+              <select name="sort" id="sort">
+                <option id="sortName" value="sortName">Sort by name</option>
+                <option id="sortPriceDes" value="sortPriceDes">
+                  Sort by price descending
+                </option>
+                <option id="sortPriceAs" value="sortPriceAs">
+                  Sort by price ascending
+                </option>
               </select>
             </div>
           </div>

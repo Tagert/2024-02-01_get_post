@@ -1,19 +1,28 @@
 "use strict";
 
 const cardsContainer = document.querySelector(".cards-container");
+const foundedItems = document.getElementById("foundItems");
+const sortSelectElement = document.getElementById("sort");
+const brandSelectElement = document.getElementById("brand");
 
-const createCard = (phonesArray) => {
+let phonesData = [];
+
+const renderCards = (phonesArray) => {
   cardsContainer.innerHTML = "";
 
   phonesArray.forEach((phone) => {
+    const phoneId = phone.id;
+
     const cardDiv = document.createElement("div");
     cardDiv.classList.add("phone-card");
+    cardDiv.dataset.phoneId = phoneId;
+
     cardDiv.addEventListener("mouseenter", () => {
       techSpecLinkA.style.display = "block";
       removeButton.style.display = "flex";
     });
+
     cardDiv.addEventListener("mouseleave", () => {
-      console.log("Mouse left!");
       techSpecLinkA.style.display = "none";
       removeButton.style.display = "none";
     });
@@ -89,7 +98,6 @@ const createCard = (phonesArray) => {
     const removeButton = document.createElement("button");
     removeButton.setAttribute("class", "btn");
     removeButton.innerText = "Remove card";
-    // deleteButton.addEventListener("click", () => deleteProperty(property.id));
 
     cardsContainer.append(cardDiv);
     cardDiv.append(imagesDiv, mainParagraphsDiv, techSpecLinkA, removeButton);
@@ -119,12 +127,91 @@ const createCard = (phonesArray) => {
 };
 
 const fetchApi = async () => {
-  const res = await fetch("https://65bb606a52189914b5bbe878.mockapi.io/phones");
-  const phones = await res.json();
-
-  createCard(phones);
-
-  console.log(phones);
+  try {
+    const res = await fetch(
+      "https://65bb606a52189914b5bbe878.mockapi.io/phones"
+    );
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data. Status code: ${res.status}`);
+    }
+    const phones = await res.json();
+    phones.sort((a, b) => (a.brand > b.brand ? 1 : -1));
+    foundedItems.innerText = phones.length;
+    phonesData = phones;
+    return phones;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 };
 
-fetchApi();
+const deleteAndRefresh = async (phoneId) => {
+  try {
+    const res = await fetch(
+      `https://65bb606a52189914b5bbe878.mockapi.io/phones/${phoneId}`,
+      { method: "DELETE" }
+    );
+
+    if (!res.ok) {
+      throw new Error(
+        `Failed to delete phone with id ${phoneId}. Status code: ${res.status}`
+      );
+    }
+
+    console.log(`Phone with id ${phoneId} has been deleted.`);
+    await initPage();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const initPage = async () => {
+  const phones = await fetchApi();
+  renderCards(phones);
+};
+
+const filterAndRender = async (selectedBrand, selectedSortOption) => {
+  let filteredPhonesArray = [...phonesData];
+
+  if (selectedBrand !== "All") {
+    filteredPhonesArray = filteredPhonesArray.filter(
+      (phone) => phone.brand === selectedBrand
+    );
+  }
+
+  const sortingFunction = sortFunctions[selectedSortOption] || ((a, b) => 0);
+  const sortedPhonesArray = filteredPhonesArray.sort(sortingFunction);
+
+  renderCards(sortedPhonesArray);
+
+  foundedItems.innerText = sortedPhonesArray.length;
+};
+
+const sortFunctions = {
+  sortName: (a, b) => a.brand.localeCompare(b.brand),
+  sortPriceDes: (a, b) => b.priceEur - a.priceEur,
+  sortPriceAs: (a, b) => a.priceEur - b.priceEur,
+};
+
+brandSelectElement.addEventListener("change", async () => {
+  const selectedBrand = brandSelectElement.value;
+  const selectedSortOption = sortSelectElement.value;
+  await filterAndRender(selectedBrand, selectedSortOption);
+});
+
+sortSelectElement.addEventListener("change", async () => {
+  const selectedBrand = brandSelectElement.value;
+  const selectedSortOption = sortSelectElement.value;
+  await filterAndRender(selectedBrand, selectedSortOption);
+});
+
+cardsContainer.addEventListener("click", async (event) => {
+  const removeButton = event.target.closest(".btn");
+  if (removeButton) {
+    const cardDiv = removeButton.closest(".phone-card");
+    const phoneId = cardDiv.dataset.phoneId;
+    await deleteAndRefresh(phoneId);
+  }
+});
+
+initPage();
