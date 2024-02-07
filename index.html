@@ -12,6 +12,44 @@
         <nav class="navbar">
           <h1>Share with me</h1>
           <div class="nav-list">
+            <div class="login-card">
+              <div class="active-login">
+                <div class="input">
+                  <div class="username-box">
+                    <input
+                      type="email"
+                      id="userName"
+                      placeholder="Your email"
+                    />
+                  </div>
+
+                  <div class="username-info-error">
+                    <p class="username-info"></p>
+                  </div>
+                </div>
+
+                <div class="input">
+                  <div class="password-box">
+                    <input
+                      type="password"
+                      id="password"
+                      placeholder="Your password"
+                    />
+                  </div>
+
+                  <div class="password-info-error">
+                    <p class="password-info"></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-info">
+                <button id="btn">Login</button>
+                <p class="error"></p>
+              </div>
+            </div>
+
+            <a id="loginWrapper" href="#">Login</a>
             <a href="./index.html">Home</a>
             <a href="./add-me/add-index.html">Add your item</a>
             <div class="my-basket">
@@ -70,6 +108,7 @@
         <div class="cards-container"></div>
       </div>
     </main>
-    <script src="script.js"></script>
+
+    <script type="module" src="script.js"></script>
   </body>
 </html>

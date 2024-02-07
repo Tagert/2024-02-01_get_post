@@ -1,130 +1,138 @@
 "use strict";
 
+import { userLogin } from "./src/user-login.js";
+import { renderCards } from "./src/render-cards.js";
+
 const cardsContainer = document.querySelector(".cards-container");
 const foundedItems = document.getElementById("foundItems");
 const sortSelectElement = document.getElementById("sort");
 const brandSelectElement = document.getElementById("brand");
+const loginCard = document.querySelector(".login-card");
+
+const loginWrapper = document.getElementById("loginWrapper");
+const loginButtonInfo = document.querySelector(".btn-info");
+const loginButton = document.getElementById("btn");
 
 let phonesData = [];
 
-const renderCards = (phonesArray) => {
-  cardsContainer.innerHTML = "";
+// const renderCards = (phonesArray) => {
+//   cardsContainer.innerHTML = "";
 
-  phonesArray.forEach((phone) => {
-    const phoneId = phone.id;
+//   phonesArray.forEach((phone) => {
+//     const phoneId = phone.id;
 
-    const cardDiv = document.createElement("div");
-    cardDiv.classList.add("phone-card");
-    cardDiv.dataset.phoneId = phoneId;
+//     const cardDiv = document.createElement("div");
+//     cardDiv.classList.add("phone-card");
+//     cardDiv.dataset.phoneId = phoneId;
 
-    cardDiv.addEventListener("mouseenter", () => {
-      techSpecLinkA.style.display = "block";
-      removeButton.style.display = "flex";
-    });
+//     cardDiv.addEventListener("mouseenter", () => {
+//       techSpecLinkA.style.display = "block";
+//       removeButton.style.display = "flex";
+//     });
 
-    cardDiv.addEventListener("mouseleave", () => {
-      techSpecLinkA.style.display = "none";
-      removeButton.style.display = "none";
-    });
+//     cardDiv.addEventListener("mouseleave", () => {
+//       techSpecLinkA.style.display = "none";
+//       removeButton.style.display = "none";
+//     });
 
-    const imagesDiv = document.createElement("div");
-    imagesDiv.classList.add("images-box");
+//     const imagesDiv = document.createElement("div");
+//     imagesDiv.classList.add("images-box");
 
-    const imgUrl = document.createElement("img");
-    imgUrl.src = phone.imgUrl;
+//     const imgUrl = document.createElement("img");
+//     imgUrl.src = phone.imgUrl;
 
-    const mainParagraphsDiv = document.createElement("div");
-    mainParagraphsDiv.classList.add("main-box");
+//     const mainParagraphsDiv = document.createElement("div");
+//     mainParagraphsDiv.classList.add("main-box");
 
-    const paragraphsDiv = document.createElement("div");
-    paragraphsDiv.classList.add("specification-box");
+//     const paragraphsDiv = document.createElement("div");
+//     paragraphsDiv.classList.add("specification-box");
 
-    const brandParagraph = document.createElement("p");
-    brandParagraph.innerText = phone.brand;
+//     const brandParagraph = document.createElement("p");
+//     brandParagraph.innerText = phone.brand;
 
-    const nameParagraph = document.createElement("p");
-    nameParagraph.innerText = phone.name;
+//     const nameParagraph = document.createElement("p");
+//     nameParagraph.innerText = phone.name;
 
-    const launchDateParagraph = document.createElement("p");
-    launchDateParagraph.innerText = phone.launchDate;
+//     const launchDateParagraph = document.createElement("p");
+//     launchDateParagraph.innerText = phone.launchDate;
 
-    const platformOsParagraph = document.createElement("p");
-    platformOsParagraph.innerText = phone.platformOs;
+//     const platformOsParagraph = document.createElement("p");
+//     platformOsParagraph.innerText = phone.platformOs;
 
-    const selfieCameraParagraph = document.createElement("p");
-    selfieCameraParagraph.innerText = phone.selfieCamera;
+//     const selfieCameraParagraph = document.createElement("p");
+//     selfieCameraParagraph.innerText = phone.selfieCamera;
 
-    const internalRamParagraph = document.createElement("p");
-    internalRamParagraph.innerText = phone.internalRam;
+//     const internalRamParagraph = document.createElement("p");
+//     internalRamParagraph.innerText = phone.internalRam;
 
-    const batteryTypeParagraph = document.createElement("p");
-    batteryTypeParagraph.innerText = phone.batteryType;
+//     const batteryTypeParagraph = document.createElement("p");
+//     batteryTypeParagraph.innerText = phone.batteryType;
 
-    const priceEurParagraph = document.createElement("p");
-    priceEurParagraph.innerText = `${phone.priceEur} \u20AC`;
+//     const priceEurParagraph = document.createElement("p");
+//     priceEurParagraph.innerText = `${phone.priceEur} \u20AC`;
 
-    const paragraphsTextDiv = document.createElement("div");
-    paragraphsTextDiv.classList.add("description-box");
+//     const paragraphsTextDiv = document.createElement("div");
+//     paragraphsTextDiv.classList.add("description-box");
 
-    const brandTextParagraph = document.createElement("p");
-    brandTextParagraph.innerText = "Brand:";
+//     const brandTextParagraph = document.createElement("p");
+//     brandTextParagraph.innerText = "Brand:";
 
-    const nameTextParagraph = document.createElement("p");
-    nameTextParagraph.innerText = "Model:";
+//     const nameTextParagraph = document.createElement("p");
+//     nameTextParagraph.innerText = "Model:";
 
-    const launchDateTextParagraph = document.createElement("p");
-    launchDateTextParagraph.innerText = "Announced:";
+//     const launchDateTextParagraph = document.createElement("p");
+//     launchDateTextParagraph.innerText = "Announced:";
 
-    const platformOsTextParagraph = document.createElement("p");
-    platformOsTextParagraph.innerText = "OS:";
+//     const platformOsTextParagraph = document.createElement("p");
+//     platformOsTextParagraph.innerText = "OS:";
 
-    const selfieCameraTextParagraph = document.createElement("p");
-    selfieCameraTextParagraph.innerText = "Selfie Camera:";
+//     const selfieCameraTextParagraph = document.createElement("p");
+//     selfieCameraTextParagraph.innerText = "Selfie Camera:";
 
-    const internalRamTextParagraph = document.createElement("p");
-    internalRamTextParagraph.innerText = "Internal Ram:";
+//     const internalRamTextParagraph = document.createElement("p");
+//     internalRamTextParagraph.innerText = "Internal Ram:";
 
-    const batteryTypeTextParagraph = document.createElement("p");
-    batteryTypeTextParagraph.innerText = "Battery Type:";
+//     const batteryTypeTextParagraph = document.createElement("p");
+//     batteryTypeTextParagraph.innerText = "Battery Type:";
 
-    const priceEurTextParagraph = document.createElement("p");
-    priceEurTextParagraph.innerText = "Price:";
+//     const priceEurTextParagraph = document.createElement("p");
+//     priceEurTextParagraph.innerText = "Price:";
 
-    const techSpecLinkA = document.createElement("a");
-    techSpecLinkA.innerText = "MORE INFO";
-    techSpecLinkA.href = phone.techSpecLink;
-    techSpecLinkA.target = "_blank";
+//     const techSpecLinkA = document.createElement("a");
+//     techSpecLinkA.innerText = "MORE INFO";
+//     techSpecLinkA.href = phone.techSpecLink;
+//     techSpecLinkA.target = "_blank";
 
-    const removeButton = document.createElement("button");
-    removeButton.setAttribute("class", "btn");
-    removeButton.innerText = "Remove card";
+//     const removeButton = document.createElement("button");
+//     removeButton.setAttribute("class", "btn");
+//     removeButton.innerText = "Remove card";
 
-    cardsContainer.append(cardDiv);
-    cardDiv.append(imagesDiv, mainParagraphsDiv, techSpecLinkA, removeButton);
-    imagesDiv.append(imgUrl);
-    mainParagraphsDiv.append(paragraphsTextDiv, paragraphsDiv);
-    paragraphsTextDiv.append(
-      brandTextParagraph,
-      nameTextParagraph,
-      launchDateTextParagraph,
-      platformOsTextParagraph,
-      selfieCameraTextParagraph,
-      internalRamTextParagraph,
-      batteryTypeTextParagraph,
-      priceEurTextParagraph
-    );
-    paragraphsDiv.append(
-      brandParagraph,
-      nameParagraph,
-      launchDateParagraph,
-      platformOsParagraph,
-      selfieCameraParagraph,
-      internalRamParagraph,
-      batteryTypeParagraph,
-      priceEurParagraph
-    );
-  });
-};
+//     cardsContainer.append(cardDiv);
+//     cardDiv.append(imagesDiv, mainParagraphsDiv, techSpecLinkA, removeButton);
+//     imagesDiv.append(imgUrl);
+//     mainParagraphsDiv.append(paragraphsTextDiv, paragraphsDiv);
+//     paragraphsTextDiv.append(
+//       brandTextParagraph,
+//       nameTextParagraph,
+//       launchDateTextParagraph,
+//       platformOsTextParagraph,
+//       selfieCameraTextParagraph,
+//       internalRamTextParagraph,
+//       batteryTypeTextParagraph,
+//       priceEurTextParagraph
+//     );
+//     paragraphsDiv.append(
+//       brandParagraph,
+//       nameParagraph,
+//       launchDateParagraph,
+//       platformOsParagraph,
+//       selfieCameraParagraph,
+//       internalRamParagraph,
+//       batteryTypeParagraph,
+//       priceEurParagraph
+//     );
+//   });
+// };
 
 const fetchApi = async () => {
   try {
@@ -213,5 +221,70 @@ cardsContainer.addEventListener("click", async (event) => {
     await deleteAndRefresh(phoneId);
   }
 });
+
+loginWrapper.addEventListener("click", () => {
+  loginCard.classList.toggle("active-login-card");
+});
+
+// const userLogin = () => {
+//   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+//   const passwordRegex = /^.{6,}$/;
+
+//   const userName = document.getElementById("userName");
+//   const password = document.getElementById("password");
+//   const userNameValue = document.getElementById("userName").value;
+//   const passwordValue = document.getElementById("password").value;
+//   const errorElement = document.querySelector(".error");
+//   const userNameInfo = document.querySelector(".username-info");
+//   const passwordInfo = document.querySelector(".password-info");
+//   const loginCard = document.querySelector(".login-card");
+
+//   const isValidEmail = emailRegex.test(userNameValue);
+//   const isValidPassword = passwordRegex.test(passwordValue);
+
+//   const resetLoginWindow = () => {
+//     loginCard.classList.remove("active-login-card");
+//     userName.setAttribute("style", "border: 0.1rem solid black;");
+//     password.setAttribute("style", "border: 0.1rem solid black;");
+//     errorElement.textContent = "";
+//     userName.value = "";
+//     password.value = "";
+//     userNameInfo.textContent = "";
+//     passwordInfo.textContent = "";
+//   };
+
+//   if (isValidEmail && isValidPassword) {
+//     localStorage.setItem("userName", userNameValue);
+//     errorElement.textContent = "Login was successful.";
+//     errorElement.style.color = "green";
+//     setTimeout(resetLoginWindow, 2000);
+//   } else {
+//     errorElement.textContent = "";
+//   }
+
+//   if (userNameValue === "") {
+//     userNameInfo.textContent = "Please enter an email.";
+//     userNameInfo.style.color = "brown";
+//   } else if (!isValidEmail) {
+//     userNameInfo.textContent = "Please provide a properly formatted email.";
+//     userNameInfo.style.color = "brown";
+//   } else {
+//     userName.setAttribute("style", "border: 0.1rem solid green;");
+//     userNameInfo.textContent = "";
+//   }
+
+//   if (passwordValue === "") {
+//     passwordInfo.textContent = "Please enter a password.";
+//     passwordInfo.style.color = "brown";
+//   } else if (!isValidPassword) {
+//     passwordInfo.textContent = "Password must be at least 6 characters";
+//     passwordInfo.style.color = "brown";
+//   } else {
+//     password.setAttribute("style", "border: 0.1rem solid green;");
+//     passwordInfo.textContent = "";
+//   }
+// };
+
+loginButton.addEventListener("click", userLogin);
 
 initPage();

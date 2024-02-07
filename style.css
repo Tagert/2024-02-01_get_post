@@ -24,6 +24,7 @@ body {
 }
 
 header .navbar {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,12 +42,92 @@ header .navbar h1 {
 }
 header .navbar .nav-list {
   display: flex;
+  align-items: center;
   gap: 3rem;
 }
 header .navbar .nav-list a {
   font-size: 1.15rem;
   text-decoration: none;
   color: #f0ece5;
+}
+header .navbar .nav-list .login-card {
+  position: absolute;
+  top: -50%;
+  left: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.5s linear;
+  transform: translate(0%, -50%);
+}
+header .navbar .nav-list .login-card .active-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+header .navbar .nav-list .login-card .active-login .input {
+  display: flex;
+  gap: 0.5rem;
+  min-width: 12rem;
+}
+header .navbar .nav-list .login-card .active-login .input input {
+  max-width: 12rem;
+  border: 0.1rem solid #161a30;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  outline: none;
+}
+header .navbar .nav-list .login-card .active-login .input input::-moz-placeholder {
+  padding-left: 0.2rem;
+}
+header .navbar .nav-list .login-card .active-login .input input::placeholder {
+  padding-left: 0.2rem;
+}
+header .navbar .nav-list .login-card .active-login .input input[type=email] {
+  padding-left: 0.8rem;
+}
+header .navbar .nav-list .login-card .active-login .input input[type=password] {
+  padding-left: 0.8rem;
+}
+header .navbar .nav-list .login-card .active-login .input .username-info-error,
+header .navbar .nav-list .login-card .active-login .input .password-info-error {
+  display: flex;
+  align-items: center;
+}
+header .navbar .nav-list .login-card .active-login .input .username-info-error p,
+header .navbar .nav-list .login-card .active-login .input .password-info-error p {
+  font-size: 0.8rem;
+}
+header .navbar .nav-list .login-card .btn-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+header .navbar .nav-list .login-card .btn-info #btn {
+  min-width: 5rem;
+  border: 0.1rem solid #161a30;
+  border-radius: 1rem;
+  padding: 0.25rem;
+  outline: none;
+  cursor: pointer;
+  color: #161a30;
+  background: linear-gradient(270deg, rgb(227, 225, 217) 0%, rgb(242, 239, 229) 100%);
+}
+header .navbar .nav-list .login-card .btn-info #btn:hover {
+  font-weight: bold;
+}
+header .navbar .nav-list .login-card .btn-info .error {
+  font-size: 0.8rem;
+}
+header .navbar .nav-list .active-login-card {
+  position: absolute;
+  display: flex;
+  left: 30%;
+  top: 50%;
 }
 
 .search-section .search-list {
@@ -173,6 +254,6 @@ header .navbar .nav-list a {
 }
 .main-section .cards-container .phone-card .btn:hover {
   cursor: pointer;
-  background-color: #161a30;
+  background: linear-gradient(90deg, rgb(49, 48, 77) 0%, rgb(22, 26, 48) 120%);
   color: #f0ece5;
 }/*# sourceMappingURL=style.css.map */
